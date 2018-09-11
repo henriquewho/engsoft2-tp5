@@ -1,0 +1,11 @@
+{% block content %}
+<h1> WELCOME TO ENGSOFT2 </h1> 
+<br> 
+
+<h3> Posts: </h3> 
+{% for post in posts %}
+	<strong> Title: </strong> {{ post.title }} teste<br> 
+	<strong> Description: </strong> {{ post.description }} testes<br> 
+<br> 
+{% endfor %}
+{% endblock %}
