@@ -21,6 +21,34 @@ def cidades():
     g.db.close()
     return render_template('index.html', posts=cidades)
 
+@app.route('/cidades/bh')
+def cidades1():
+    g.db = connect_db()
+    cur = g.db.execute('select * from cidades where id=1')
+    cidades = [dict(title=row[0], description=row[1]) for row in
+             cur.fetchall()]
+    g.db.close()
+    return render_template('index.html', posts=cidades)
+
+@app.route('/cidades/poa')
+def cidades2():
+    g.db = connect_db()
+    cur = g.db.execute('select * from cidades where id=2')
+    cidades = [dict(title=row[0], description=row[1]) for row in
+             cur.fetchall()]
+    g.db.close()
+    return render_template('index.html', posts=cidades)
+
+
+@app.route('/cidades/<id_cidade>')
+def cidades3(id_cidade):
+    g.db = connect_db()
+    cur = g.db.execute("select * from cidades where id=?", (id_cidade))
+    cidades = [dict(title=row[0], description=row[1]) for row in
+             cur.fetchall()]
+    g.db.close()
+    return render_template('index.html', posts=cidades)
+
 
 @app.route('/estados')
 def estados():
@@ -34,7 +62,7 @@ def estados():
 @app.route('/paises')
 def paises():
     g.db = connect_db()
-    cur = g.db.execute('select * from estados')
+    cur = g.db.execute('select * from paises')
     paises = [dict(title=row[0], description=row[1]) for row in
              cur.fetchall()]
     g.db.close()
